@@ -10,6 +10,9 @@ SUBJECT = 'YaMDb API registration letter'
 class EmailAuth(models.Model):
     email = models.EmailField('адрес электронной почты', unique=True)
     confirmation_code = models.CharField(max_length=32)
+    added = models.DateTimeField(
+        verbose_name='дата запроса', auto_now_add=True
+    )
 
     def save(self, *args, **kwargs):
         self.confirmation_code = get_random_string(32)
