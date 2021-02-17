@@ -3,8 +3,16 @@ from django.db import models
 
 
 class User(AbstractUser):
-    bio = models.TextField('о себе')
-    role = models.CharField('роль в API', max_length=31)
+    USER = 'U'
+    ADMIN = 'A'
+    MODERATOR = 'M'
+
+    ROLE_CHOICES = [(USER, 'user'), (ADMIN, 'admin'), (MODERATOR, 'moderator')]
+
+    bio = models.TextField('о себе', blank=True, null=True)
+    role = models.CharField(
+        'роль в API', max_length=1, choices=ROLE_CHOICES, default=USER
+    )
     email = models.EmailField('адрес электронной почты', unique=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
