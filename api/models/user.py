@@ -3,8 +3,8 @@ from django.db import models
 
 
 class User(AbstractUser):
-    bio = models.TextField(verbose_name='Биография')
-    role = models.CharField(max_length=31, verbose_name='Роль в API')
-    email = models.EmailField('email address', unique=True)
+    bio = models.TextField('о себе')
+    role = models.CharField('роль в API', max_length=31)
+    email = models.EmailField('адрес электронной почты', unique=True)
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['username']
