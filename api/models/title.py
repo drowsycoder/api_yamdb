@@ -11,7 +11,7 @@ class Title(models.Model):
     description = models.TextField('описание', blank=True, null=True)
     genre = models.ManyToManyField(
         Genre,
-        on_delete=models.PROTECT,
+        # on_delete=models.PROTECT,  # later change it carefully
         related_name='genres',
         verbose_name='связанный жанр',
         blank=True,
