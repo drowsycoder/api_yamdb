@@ -12,7 +12,7 @@ class Review(models.Model):
     text = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE,
                                related_name='reviews',
-                               verbose_name='произведение')
+                               verbose_name='автор')
     score = models.PositiveSmallIntegerField('оценка',
         validators=[MinValueValidator(1),MaxValueValidator(10)])
     pub_date = models.DateTimeField('дата публикации', auto_now_add=True)
