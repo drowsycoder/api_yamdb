@@ -8,5 +8,5 @@ class CommentSerializer(serializers.ModelSerializer):
                                           slug_field='username')
 
     class Meta:
-        fields = '__all__'
         model = Comment
+        fields = '__all__'

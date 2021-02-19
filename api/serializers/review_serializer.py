@@ -9,8 +9,8 @@ class ReviewSerializer(serializers.ModelSerializer):
                                           slug_field='username')
 
     class Meta:
-        fields = '__all__'
         model = Review
+        fields = '__all__'
         validators = [
             UniqueTogetherValidator(
                 queryset=Review.objects.all(),
