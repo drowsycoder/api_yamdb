@@ -18,10 +18,14 @@ class GenreAdmin(admin.ModelAdmin):
 
 
 class TitleAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'year', 'genre', 'category', 'description',)
+    list_display = ('pk', 'name', 'year',
+                    'get_genres', 'category', 'description',)
     search_fields = ('name', 'description',)
     list_filter = ('year', 'genre', 'category',)
     empty_value_display = '-пусто-'
+
+    def get_genres(self, obj):
+        return "\n".join([p.genres for p in obj.genres.all()])
 
 
 admin.site.register(Category, CategoryAdmin)
