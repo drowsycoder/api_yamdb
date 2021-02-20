@@ -1,0 +1,34 @@
+from attr import validators
+from django.contrib.auth import get_user_model
+from rest_framework import serializers, validators
+
+User = get_user_model()
+
+
+class UserSerializer(serializers.ModelSerializer):
+    role = serializers.ChoiceField(choices=User.Role.choices, default='user')
+    email = serializers.EmailField(
+        validators=[validators.UniqueValidator(queryset=User.objects.all())]
+    )
+    username = serializers.CharField(
+        validators=[validators.UniqueValidator(queryset=User.objects.all())]
+    )
+
+    class Meta:
+        model = User
+        fields = (
+            'first_name',
+            'last_name',
+            'username',
+            'bio',
+            'email',
+            'role',
+        )
+
+
+class MeUserSerializer(UserSerializer):
+    class Meta(UserSerializer.Meta):
+        extra_kwargs = {
+            'username': {'required': False},
+            'email': {'required': False},
+        }

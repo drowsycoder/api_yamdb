@@ -1,5 +1,6 @@
-from api.models import EmailAuth
 from rest_framework import permissions
+
+from ..models import EmailAuth
 
 
 class EmailCodeCorrectPermission(permissions.BasePermission):
