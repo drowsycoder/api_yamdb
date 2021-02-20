@@ -1,6 +1,6 @@
 from rest_framework import filters, permissions, viewsets
 
-from ..custom_permissions import IsAdminRoleorSuper
+from ..custom_permissions import IsAdminRoleOrSuper
 from ..models import Title
 from ..serializers import TitleSerializer
 
@@ -15,5 +15,5 @@ class TitleViewSet(viewsets.ModelViewSet):
         if self.action == 'list':
             permission_classes = [permissions.AllowAny]
         else:
-            permission_classes = [IsAdminRoleorSuper]
+            permission_classes = [IsAdminRoleOrSuper]
         return [permission() for permission in permission_classes]

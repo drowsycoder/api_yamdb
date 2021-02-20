@@ -1,7 +1,7 @@
 from rest_framework import permissions
 
 
-class IsAdminRoleorSuper(permissions.BasePermission):
+class IsAdminRoleOrSuper(permissions.BasePermission):
     """
     Global permission check if user is admin
     """
