@@ -1,7 +1,6 @@
 from django.db import models
 
-from . import Category
-from . import Genre
+from . import Category, Genre
 
 
 class Title(models.Model):
