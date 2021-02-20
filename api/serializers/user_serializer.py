@@ -24,11 +24,3 @@ class UserSerializer(serializers.ModelSerializer):
             'email',
             'role',
         )
-
-
-class MeUserSerializer(UserSerializer):
-    class Meta(UserSerializer.Meta):
-        extra_kwargs = {
-            'username': {'required': False},
-            'email': {'required': False},
-        }

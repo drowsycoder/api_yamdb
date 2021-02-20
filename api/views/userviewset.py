@@ -4,16 +4,16 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from ..custom_permissions import IsAdminRoleorSuper
+from ..custom_permissions import IsAdminRoleOrSuper
 from ..models import User
-from ..serializers import MeUserSerializer, UserSerializer
+from ..serializers import UserSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
     lookup_field = 'username'
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAdminRoleorSuper]
+    permission_classes = [IsAdminRoleOrSuper]
     filter_backends = [filters.SearchFilter]
     search_fields = [
         'username',
@@ -27,11 +27,10 @@ class UserViewSet(viewsets.ModelViewSet):
     def me(self, request):
         user = get_object_or_404(self.queryset, username=request.user.username)
         if request.method == 'GET':
-
-            serializer = MeUserSerializer(user)
+            serializer = UserSerializer(user)
             return Response(serializer.data)
         if request.method == 'PATCH':
-            serializer = MeUserSerializer(
+            serializer = UserSerializer(
                 user, data=request.data, partial=True
             )
             if serializer.is_valid():
