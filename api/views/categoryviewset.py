@@ -1,7 +1,7 @@
 from rest_framework import filters, permissions, viewsets
 
 from ..custom_permissions import IsAdminRoleorSuper
-from ..models.category import Category
+from ..models import Category
 from ..serializers import CategorySerializer
 
 
