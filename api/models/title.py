@@ -6,8 +6,11 @@ from . import Category, Genre
 class Title(models.Model):
     name = models.CharField('название', max_length=100)
     year = models.PositiveSmallIntegerField('год', blank=True, null=True)
-    # rating = models.PositiveSmallIntegerField()
-    description = models.TextField('описание', blank=True, null=True)
+    description = models.TextField(
+        'описание',
+        max_length=1000,
+        blank=True,
+        null=True)
     genre = models.ManyToManyField(
         Genre,
         related_name='titles',
