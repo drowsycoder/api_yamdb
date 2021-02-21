@@ -20,4 +20,3 @@ urlpatterns = [
     path('v1/auth/email/', EmailAuthView.as_view(), name="email_auth"),
     path('v1/', include(router.urls)),
 ]
-

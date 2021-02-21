@@ -1,8 +1,8 @@
-from rest_framework import filters, viewsets, permissions
+from rest_framework import filters, permissions, viewsets
 
+from ..custom_permissions import IsAdminRoleOrSuper
 from ..models import Category
 from ..serializers import CategorySerializer
-from ..custom_permissions import IsAdminRoleorSuper
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -15,5 +15,5 @@ class CategoryViewSet(viewsets.ModelViewSet):
         if self.action == 'list':
             permission_classes = [permissions.AllowAny]
         else:
-            permission_classes = [IsAdminRoleorSuper]
+            permission_classes = [IsAdminRoleOrSuper]
         return [permission() for permission in permission_classes]

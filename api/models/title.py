@@ -1,7 +1,6 @@
 from django.db import models
 
-from .category import Category
-from .genre import Genre
+from . import Category, Genre
 
 
 class Title(models.Model):
@@ -11,13 +10,13 @@ class Title(models.Model):
     description = models.TextField('описание', blank=True, null=True)
     genre = models.ManyToManyField(
         Genre,
-        related_name='genres',
+        related_name='titles',
         verbose_name='связанный жанр',
     )
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
-        related_name='categories',
+        related_name='titles',
         verbose_name='связанная категория',
         blank=True,
         null=True,
