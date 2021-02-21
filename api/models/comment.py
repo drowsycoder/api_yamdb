@@ -6,8 +6,8 @@ from .user import User
 
 class Comment(models.Model):
     review = models.ForeignKey(Review, on_delete=models.CASCADE,
-                                  related_name='comments',
-                                  verbose_name='ревью')
+                               related_name='comments',
+                               verbose_name='ревью')
     text = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE,
                                related_name='comments',
