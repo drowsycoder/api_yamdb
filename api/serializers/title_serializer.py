@@ -5,7 +5,6 @@ from ..models import Category, Genre, Title
 
 
 class CustomTitleSerializer(serializers.ModelSerializer):
-    # rating = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Title
@@ -15,6 +14,7 @@ class CustomTitleSerializer(serializers.ModelSerializer):
 class TitleGetSerializer(CustomTitleSerializer):
     genre = GenreSerializer(many=True)
     category = CategorySerializer()
+    rating = serializers.IntegerField(read_only=True, required=False)
 
 
 class TitlePostSerializer(CustomTitleSerializer):
