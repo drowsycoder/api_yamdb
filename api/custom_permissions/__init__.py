@@ -1,1 +1,1 @@
-from .is_admin import IsAdminRoleOrSuper
+from .is_admin import IsAdminRoleOrSuper  # noqa
