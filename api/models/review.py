@@ -6,7 +6,7 @@ from .user import User
 
 
 class Review(models.Model):
-    title_id = models.ForeignKey(Title, on_delete=models.CASCADE,
+    title = models.ForeignKey(Title, on_delete=models.CASCADE,
                                  related_name='reviews',
                                  verbose_name='произведение')
     text = models.TextField()
@@ -18,5 +18,5 @@ class Review(models.Model):
     pub_date = models.DateTimeField('дата публикации', auto_now_add=True)
 
     class Meta:
-        constraints = [models.UniqueConstraint(fields=['title_id', 'author'],
+        constraints = [models.UniqueConstraint(fields=['author', 'title'],
                                                name='unique_review')]

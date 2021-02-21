@@ -5,7 +5,7 @@ from .user import User
 
 
 class Comment(models.Model):
-    review_id = models.ForeignKey(Review, on_delete=models.CASCADE,
+    review = models.ForeignKey(Review, on_delete=models.CASCADE,
                                   related_name='comments',
                                   verbose_name='ревью')
     text = models.TextField()
