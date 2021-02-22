@@ -18,7 +18,7 @@ class TitleViewSet(viewsets.ModelViewSet):
     search_fields = ['=name', ]
 
     def get_permissions(self):
-        if self.action == 'list':
+        if self.action in ('list', 'retrieve'):
             permission_classes = [permissions.AllowAny]
         else:
             permission_classes = [IsAdminRoleOrSuper]
@@ -27,4 +27,4 @@ class TitleViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action in ('list', 'retrieve'):
             return TitleGetSerializer
-        return TitlePostSerializer
+        return TitlePostSerializer  # 'create', 'update', 'partial_update'
