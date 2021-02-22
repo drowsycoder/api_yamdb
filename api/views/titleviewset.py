@@ -1,5 +1,5 @@
 from django.db.models import Avg
-from rest_framework import filters, permissions, viewsets
+from rest_framework import permissions, viewsets
 
 from ..custom_permissions import IsAdminRoleOrSuper
 from ..models import Title

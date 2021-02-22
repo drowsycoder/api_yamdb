@@ -5,7 +5,6 @@ from ..models import Category, Genre, Title
 
 
 class CustomTitleSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Title
         fields = '__all__'
