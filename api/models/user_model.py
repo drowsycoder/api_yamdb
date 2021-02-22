@@ -3,6 +3,12 @@ from django.db import models
 
 
 class User(AbstractUser):
+    """
+    Custom User model for api yamdb.
+    Email used as username field.
+    New fields: bio, role.
+    """
+
     class Role(models.TextChoices):
         USER = 'user', ('user')
         MODERATOR = 'moderator', ('moderator')

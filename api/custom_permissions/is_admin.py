@@ -6,7 +6,7 @@ class IsAdminRoleOrSuper(permissions.BasePermission):
     Global permission check if user is admin
     """
 
-    def has_permission(self, request, view):
+    def has_permission(self, request, view) -> bool:
         user = request.user
         if user.is_anonymous:
             return False

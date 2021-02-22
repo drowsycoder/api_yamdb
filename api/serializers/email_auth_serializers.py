@@ -3,7 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from ..models import EmailAuth
+from ..models import EmailAuth, RANDOM_STRING_LENGTH
 
 User = get_user_model()
 
@@ -15,14 +15,28 @@ class EmailAuthSerializer(serializers.ModelSerializer):
 
 
 class EmailCodePairSerializer(TokenObtainPairSerializer):
+    """
+    Custom token serializer.
+    Used to generate token.
+    1. Checks that email and confirmation code are correct and are in db.
+    2. if 1. is OK, deletes this email+auth row and creates new User.
+    User.username generates from email. Part before @.
+    3. Serializes token.
+    """
+
     email = serializers.EmailField()
-    confirmation_code = serializers.CharField()
+    confirmation_code = serializers.CharField(
+        max_length=RANDOM_STRING_LENGTH, min_lengh=RANDOM_STRING_LENGTH)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['password'].required = False
 
-    def check_conf_code(self, email, confirmation_code):
+    def check_conf_code(self, email: str, confirmation_code: str) -> True:
+        """
+        Checks email and confirmation code are in database. If not,
+        raises ValidationError.
+        """
         try:
             email_code = EmailAuth.objects.get(
                 email=email, confirmation_code=confirmation_code)

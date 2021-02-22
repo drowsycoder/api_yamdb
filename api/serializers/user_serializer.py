@@ -5,6 +5,12 @@ User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """
+    User serializer.
+    Default role value: user
+    Checks, that email and username are unique.
+    """
+
     role = serializers.ChoiceField(choices=User.Role.choices, default='user')
     email = serializers.EmailField(
         validators=[validators.UniqueValidator(queryset=User.objects.all())]
