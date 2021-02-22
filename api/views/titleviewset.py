@@ -1,7 +1,10 @@
 from django.db.models import Avg
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import permissions, viewsets
+from rest_framework.filters import SearchFilter
 
 from ..custom_permissions import IsAdminRoleOrSuper
+from ..filters import TitleFilter
 from ..models import Title
 from ..serializers import TitleGetSerializer, TitlePostSerializer
 
@@ -10,10 +13,9 @@ class TitleViewSet(viewsets.ModelViewSet):
     queryset = Title.objects.annotate(rating=Avg(
         'reviews__score')
     ).order_by('-id')
-    # serializer_class = TitlePostSerializer
-    # filter_backends = [filters.SearchFilter]
-    # search_fields = ['=name', ]
-    filterset_fields = ['year', 'name', 'category__slug', 'genre__slug']
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    filterset_class = TitleFilter
+    search_fields = ['=name', ]
 
     def get_permissions(self):
         if self.action == 'list':
