@@ -3,7 +3,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from ..custom_permissions import IsAuthorOrHigher
-from ..models.review import Review
+from ..models import Review
 from ..serializers import CommentSerializer
 
 
