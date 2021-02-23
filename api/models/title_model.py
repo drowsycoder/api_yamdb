@@ -6,7 +6,7 @@ from .genre_model import Genre
 
 class Title(models.Model):
     """Модель произведения (фильма, книги, песни)."""
-    name = models.CharField('название', max_length=100)
+    name = models.CharField('название произведения', max_length=100)
     year = models.PositiveSmallIntegerField('год', blank=True, null=True)
     description = models.TextField(
         'описание',
@@ -16,16 +16,20 @@ class Title(models.Model):
     genre = models.ManyToManyField(
         Genre,
         related_name='titles',
-        verbose_name='связанный жанр',
+        verbose_name='жанр',
     )
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
         related_name='titles',
-        verbose_name='связанная категория',
+        verbose_name='категория',
         blank=True,
         null=True,
     )
+
+    class Meta:
+        verbose_name = 'произведение'
+        verbose_name_plural = 'произведения'
 
     def __str__(self):
         return self.name

@@ -6,5 +6,9 @@ class Genre(models.Model):
     name = models.CharField('жанр', max_length=200, unique=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
 
+    class Meta:
+        verbose_name = 'жанр'
+        verbose_name_plural = 'жанры'
+
     def __str__(self):
         return self.name
