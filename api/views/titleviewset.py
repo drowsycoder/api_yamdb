@@ -3,10 +3,10 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import permissions, viewsets
 from rest_framework.filters import SearchFilter
 
-from ..custom_permissions import IsAdminRoleOrSuper
-from ..filters import TitleFilter
-from ..models import Title
-from ..serializers import TitleGetSerializer, TitlePostSerializer
+from api.custom_permissions import IsAdminRoleOrSuper
+from api.filters import TitleFilter
+from api.models import Title
+from api.serializers import TitleGetSerializer, TitlePostSerializer
 
 
 class TitleViewSet(viewsets.ModelViewSet):

@@ -2,9 +2,9 @@ from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-from ..custom_permissions import IsAuthorOrHigher
-from ..models import Review
-from ..serializers import CommentSerializer
+from api.custom_permissions import IsAuthorOrHigher
+from api.models import Review
+from api.serializers import CommentSerializer
 
 
 class CommentViewSet(viewsets.ModelViewSet):

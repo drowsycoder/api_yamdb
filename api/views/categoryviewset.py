@@ -1,8 +1,8 @@
 from rest_framework import filters, mixins, permissions, viewsets
 
-from ..custom_permissions import IsAdminRoleOrSuper
-from ..models import Category
-from ..serializers import CategorySerializer
+from api.custom_permissions import IsAdminRoleOrSuper
+from api.models import Category
+from api.serializers import CategorySerializer
 
 
 class CategoryViewSet(mixins.ListModelMixin,

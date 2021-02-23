@@ -3,7 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from ..models import EmailAuth, RANDOM_STRING_LENGTH
+from api.models import EmailAuth, RANDOM_STRING_LENGTH
 
 User = get_user_model()
 
