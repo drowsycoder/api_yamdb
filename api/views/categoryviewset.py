@@ -9,6 +9,7 @@ class CategoryViewSet(mixins.ListModelMixin,
                       mixins.CreateModelMixin,
                       mixins.DestroyModelMixin,
                       viewsets.GenericViewSet):
+    """Представление для взаимодействия (CRUD) с категорией произведения."""
     queryset = Category.objects.all().order_by('name')
     serializer_class = CategorySerializer
     filter_backends = [filters.SearchFilter]

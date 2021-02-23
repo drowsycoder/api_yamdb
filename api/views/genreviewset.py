@@ -9,6 +9,7 @@ class GenreViewSet(mixins.ListModelMixin,
                    mixins.CreateModelMixin,
                    mixins.DestroyModelMixin,
                    viewsets.GenericViewSet):
+    """Представление для взаимодействия (CRUD) с жанром произведения."""
     queryset = Genre.objects.all().order_by('name')
     serializer_class = GenreSerializer
     filter_backends = [filters.SearchFilter]

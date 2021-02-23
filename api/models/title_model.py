@@ -5,6 +5,7 @@ from .genre_model import Genre
 
 
 class Title(models.Model):
+    """Модель произведения (фильма, книги, песни)."""
     name = models.CharField('название', max_length=100)
     year = models.PositiveSmallIntegerField('год', blank=True, null=True)
     description = models.TextField(
