@@ -18,9 +18,8 @@ class Comment(models.Model):
 
     class Meta:
         indexes = [
+            models.Index(fields=['author']),
             models.Index(fields=['pub_date']),
-            models.Index(fields=['review']),
-            models.Index(fields=['author'])
         ]
         verbose_name = 'комментарий'
         verbose_name_plural = 'комментарии'
