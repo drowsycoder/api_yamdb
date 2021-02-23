@@ -4,22 +4,22 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from api.custom_permissions import IsAdminRoleOrSuper
+from api.custom_permissions import IsAdminRoleOrSuperuser
 from api.models import User
 from api.serializers import UserSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    """
-    Api admin or superuser can make CRUD operations,
-    lookup for user by username.
-    User can check and change his personal data.
+    """CRUD для модели User.
+
+    Админ и суперюзер могут выполнять все операции и искать по username.
+    Пользователь может смотреть и редактировать свои учётные денные.
     """
 
     lookup_field = 'username'
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAdminRoleOrSuper]
+    permission_classes = [IsAdminRoleOrSuperuser]
     filter_backends = [filters.SearchFilter]
     search_fields = [
         'username',

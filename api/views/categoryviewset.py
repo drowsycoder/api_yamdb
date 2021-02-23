@@ -1,6 +1,6 @@
 from rest_framework import filters, mixins, permissions, viewsets
 
-from api.custom_permissions import IsAdminRoleOrSuper
+from api.custom_permissions import IsAdminRoleOrSuperuser
 from api.models import Category
 from api.serializers import CategorySerializer
 
@@ -20,5 +20,5 @@ class CategoryViewSet(mixins.ListModelMixin,
         if self.action == 'list':
             permission_classes = [permissions.AllowAny]
         else:
-            permission_classes = [IsAdminRoleOrSuper]
+            permission_classes = [IsAdminRoleOrSuperuser]
         return [permission() for permission in permission_classes]
