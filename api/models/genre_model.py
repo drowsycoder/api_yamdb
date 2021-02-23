@@ -9,6 +9,7 @@ class Genre(models.Model):
     class Meta:
         verbose_name = 'жанр'
         verbose_name_plural = 'жанры'
+        indexes = [models.Index(fields=['name']), ]
 
     def __str__(self):
         return self.name

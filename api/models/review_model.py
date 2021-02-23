@@ -26,9 +26,7 @@ class Review(models.Model):
                                                name='unique_review')]
         indexes = [
             models.Index(fields=['pub_date']),
-            models.Index(fields=['title']),
-            models.Index(fields=['author']),
-            models.Index(fields=['score'])
+            models.Index(fields=['score']),
         ]
         verbose_name = 'отзыв'
         verbose_name_plural = 'отзывы'
