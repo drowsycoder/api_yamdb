@@ -2,11 +2,9 @@ from rest_framework import permissions
 
 
 class IsAdminRoleOrSuper(permissions.BasePermission):
-    """
-    Global permission check if user is admin
-    """
+    """Проверка на наличие роли 'admin' или прав суперпользователя"""
 
-    def has_permission(self, request, view):
+    def has_permission(self, request, view) -> bool:
         user = request.user
         if user.is_anonymous:
             return False

@@ -3,6 +3,12 @@ from django.db import models
 
 
 class User(AbstractUser):
+    """Модель User под проект api Yamdb.
+
+    Поле email используется вместо username.
+    Новые поля: bio, role.
+    """
+
     class Role(models.TextChoices):
         USER = 'user', ('user')
         MODERATOR = 'moderator', ('moderator')
@@ -15,3 +21,12 @@ class User(AbstractUser):
     email = models.EmailField('адрес электронной почты', unique=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
+
+    class Meta:
+        indexes = [
+            models.Index(
+                fields=['email'], name='user_email_idx'),
+            models.Index(
+                fields=['username'], name='user_username_idx'),
+        ]
+        ordering = ['role', '-email']

@@ -5,6 +5,12 @@ User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """Сериализатор класса User.
+
+    Роль по умолчанию: user
+    Проверяет email и username на уникальность.
+    """
+
     role = serializers.ChoiceField(choices=User.Role.choices, default='user')
     email = serializers.EmailField(
         validators=[validators.UniqueValidator(queryset=User.objects.all())]

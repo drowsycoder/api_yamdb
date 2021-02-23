@@ -10,6 +10,12 @@ from ..serializers import UserSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    """
+    Api admin or superuser can make CRUD operations,
+    lookup for user by username.
+    User can check and change his personal data.
+    """
+
     lookup_field = 'username'
     queryset = User.objects.all()
     serializer_class = UserSerializer
