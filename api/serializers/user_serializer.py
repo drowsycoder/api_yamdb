@@ -5,10 +5,10 @@ User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
-    """
-    User serializer.
-    Default role value: user
-    Checks, that email and username are unique.
+    """Сериализатор класса User.
+
+    Роль по умолчанию: user
+    Проверяет email и username на уникальность.
     """
 
     role = serializers.ChoiceField(choices=User.Role.choices, default='user')

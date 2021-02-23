@@ -15,27 +15,26 @@ class EmailAuthSerializer(serializers.ModelSerializer):
 
 
 class EmailCodePairSerializer(TokenObtainPairSerializer):
-    """
-    Custom token serializer.
-    Used to generate token.
-    1. Checks that email and confirmation code are correct and are in db.
-    2. if 1. is OK, deletes this email+auth row and creates new User.
-    User.username generates from email. Part before @.
-    3. Serializes token.
+    """Сериализатор токена.
+
+    1. Проверяет, что email и confirmation code указаны верно и есть в БД.
+    2. Если п.1 верен, удаляет эту связку и создает нового пользователя.
+    User.username создается на основе email. Берётся часть перед @.
+    3. Генерируется сам токе.
     """
 
     email = serializers.EmailField()
     confirmation_code = serializers.CharField(
-        max_length=RANDOM_STRING_LENGTH, min_lengh=RANDOM_STRING_LENGTH)
+        max_length=RANDOM_STRING_LENGTH, min_length=RANDOM_STRING_LENGTH)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['password'].required = False
 
     def check_conf_code(self, email: str, confirmation_code: str) -> True:
-        """
-        Checks email and confirmation code are in database. If not,
-        raises ValidationError.
+        """Проверяет, что email и confirmation code в БД.
+
+        Если нет, то вызывает исключение ValidationError с описанием.
         """
         try:
             email_code = EmailAuth.objects.get(
