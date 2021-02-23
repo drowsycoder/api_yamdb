@@ -4,7 +4,10 @@ from .models import Title
 
 
 class TitleFilter(FilterSet):
-    """Filters the titles by name, category, genre or year"""
+    """Фильтр для представления модели произведения.
+
+    Предполагает фильтрацию по полям названия, категории, жанра и года.
+    """
     name = CharFilter(field_name='name', lookup_expr='icontains')
     category = CharFilter(field_name='category__slug', lookup_expr='iexact')
     genre = CharFilter(field_name='genre__slug', lookup_expr='iexact')

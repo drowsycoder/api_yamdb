@@ -5,18 +5,28 @@ from ..models import Category, Genre, Title
 
 
 class CustomTitleSerializer(serializers.ModelSerializer):
+    """Базовый суперкласс сериализатора для модели произведения (Title)."""
+
     class Meta:
         model = Title
         fields = '__all__'
 
 
 class TitleGetSerializer(CustomTitleSerializer):
+    """Сериализатор для модели произведения (Title).
+
+    Используется для list и retrieve.
+    """
     genre = GenreSerializer(many=True)
     category = CategorySerializer()
     rating = serializers.IntegerField(read_only=True, required=False)
 
 
 class TitlePostSerializer(CustomTitleSerializer):
+    """Сериализатор для модели произведения (Title).
+
+    Используется для create, update и partial_update.
+    """
     genre = serializers.SlugRelatedField(
         queryset=Genre.objects.all(),
         slug_field='slug',
