@@ -1,7 +1,7 @@
 from rest_framework import permissions
 
 
-class IsAdminRoleOrSuper(permissions.BasePermission):
+class IsAdminRoleOrSuperuser(permissions.BasePermission):
     """Проверка на наличие роли 'admin' или прав суперпользователя"""
 
     def has_permission(self, request, view) -> bool:
