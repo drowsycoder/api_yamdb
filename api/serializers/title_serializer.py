@@ -17,8 +17,8 @@ class TitleGetSerializer(CustomTitleSerializer):
 
     Используется для list и retrieve.
     """
-    genre = GenreSerializer(many=True)
-    category = CategorySerializer()
+    genre = GenreSerializer(many=True, read_only=True)
+    category = CategorySerializer(read_only=True)
     rating = serializers.IntegerField(read_only=True, required=False)
 
 
