@@ -4,9 +4,9 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from ..custom_permissions import IsAdminRoleOrSuper
-from ..models import User
-from ..serializers import UserSerializer
+from api.custom_permissions import IsAdminRoleOrSuper
+from api.models import User
+from api.serializers import UserSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
