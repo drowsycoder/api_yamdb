@@ -24,7 +24,7 @@ class TitleAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
     def get_genres(self, obj):
-        return "\n".join([p.genres for p in obj.genres.all()])
+        return '\n'.join([p.genres for p in obj.genres.all()])
 
 
 class CommentAdmin(admin.ModelAdmin):
