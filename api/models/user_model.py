@@ -23,6 +23,8 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['username']
 
     class Meta:
+        verbose_name = 'пользователь'
+        verbose_name_plural = 'пользователи'
         indexes = [
             models.Index(
                 fields=['email'], name='user_email_idx'),

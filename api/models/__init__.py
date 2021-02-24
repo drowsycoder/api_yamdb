@@ -1,6 +1,6 @@
 from .category_model import Category
 from .comment_model import Comment
-from .email_auth_model import RANDOM_STRING_LENGTH, EmailAuth
+from .email_auth_model import EmailAuth
 from .genre_model import Genre
 from .review_model import Review
 from .title_model import Title
@@ -14,5 +14,4 @@ __all__ = [
     'Review',
     'Title',
     'User',
-    'RANDOM_STRING_LENGTH',
 ]
