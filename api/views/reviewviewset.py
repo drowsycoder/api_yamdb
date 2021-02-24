@@ -13,11 +13,10 @@ class ReviewViewSet(viewsets.ModelViewSet):
     serializer_class = ReviewSerializer
     permission_classes = [IsAuthenticatedOrReadOnly,
                           IsAuthorOrHigherOrReadOnly]
-    http_method_names = ('get', 'post', 'put', 'patch', 'delete')
 
     def get_queryset(self):
         title = get_object_or_404(Title, id=self.kwargs.get('title_id'))
-        return title.reviews.all().order_by('pub_date')
+        return title.reviews.all()
 
     def perform_create(self, serializer):
         title = get_object_or_404(Title, id=self.kwargs.get('title_id'))

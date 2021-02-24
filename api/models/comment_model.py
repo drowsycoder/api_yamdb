@@ -17,6 +17,7 @@ class Comment(models.Model):
     pub_date = models.DateTimeField('дата публикации', auto_now_add=True)
 
     class Meta:
+        ordering = ['-pub_date']
         indexes = [
             models.Index(fields=['author']),
             models.Index(fields=['pub_date']),
