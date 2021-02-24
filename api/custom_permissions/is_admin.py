@@ -8,4 +8,4 @@ class IsAdminRoleOrSuperuser(permissions.BasePermission):
         user = request.user
         if user.is_anonymous:
             return False
-        return user.is_superuser or user.role == 'admin'
+        return user.has_api_administrate_permission

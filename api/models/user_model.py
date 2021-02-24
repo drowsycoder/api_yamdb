@@ -30,3 +30,14 @@ class User(AbstractUser):
                 fields=['username'], name='user_username_idx'),
         ]
         ordering = ['role', '-email']
+
+    @property
+    def has_api_administrate_permission(self):
+        has_permission = self.role == self.Role.ADMIN or self.is_superuser
+        return has_permission
+
+    @property
+    def has_api_moderate_permission(self):
+        has_permission = self.role in [self.Role.ADMIN,
+                                       self.Role.MODERATOR] or self.is_superuser
+        return has_permission

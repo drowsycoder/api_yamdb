@@ -11,6 +11,5 @@ class IsAuthorOrHigherOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         user = request.user
         return (request.method in permissions.SAFE_METHODS
-                or user.is_superuser
-                or user.role in ['admin', 'moderator']
+                or user.has_api_moderate_permission
                 or obj.author == user)
