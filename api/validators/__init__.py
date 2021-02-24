@@ -1,5 +1,5 @@
-from .title_year_validator import title_year_validator
+from .title_validator import year_validator
 
 __all__ = [
-    'title_year_validator',
+    'year_validator',
 ]

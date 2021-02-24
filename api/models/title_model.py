@@ -1,6 +1,6 @@
 from django.db import models
 
-from api.validators import title_year_validator
+from api.validators import year_validator
 from .category_model import Category
 from .genre_model import Genre
 
@@ -9,7 +9,7 @@ class Title(models.Model):
     """Модель произведения (фильма, книги, песни)."""
     name = models.CharField('название произведения', max_length=100)
     year = models.SmallIntegerField('год', blank=True, null=True,
-                                    validators=[title_year_validator], )
+                                    validators=[year_validator], )
     description = models.TextField(
         'описание',
         max_length=1000,

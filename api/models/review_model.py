@@ -15,13 +15,17 @@ class Review(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE,
                                related_name='reviews',
                                verbose_name='автор')
-    score = models.PositiveSmallIntegerField('оценка',
-                                             validators=[MinValueValidator(1),
-                                                         MaxValueValidator(10)]
-                                             )
+    score = models.PositiveSmallIntegerField(
+        'оценка',
+        validators=[
+            MinValueValidator(1, message='оценка не может быть меньше 1'),
+            MaxValueValidator(10, message='оценка не может быть больше 10')
+        ]
+    )
     pub_date = models.DateTimeField('дата публикации', auto_now_add=True)
 
     class Meta:
+        ordering = ['-pub_date']
         constraints = [models.UniqueConstraint(fields=['author', 'title'],
                                                name='unique_review')]
         indexes = [
