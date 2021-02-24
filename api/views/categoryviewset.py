@@ -1,24 +1,9 @@
-from rest_framework import filters, mixins, permissions, viewsets
-
-from api.custom_permissions import IsAdminRoleOrSuperuser
 from api.models import Category
 from api.serializers import CategorySerializer
+from api.views import CustomAPIViewSet
 
 
-class CategoryViewSet(mixins.ListModelMixin,
-                      mixins.CreateModelMixin,
-                      mixins.DestroyModelMixin,
-                      viewsets.GenericViewSet):
+class CategoryViewSet(CustomAPIViewSet):
     """Представление для взаимодействия (CRUD) с категорией произведения."""
     queryset = Category.objects.all().order_by('name')
     serializer_class = CategorySerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['=name', ]
-    lookup_field = 'slug'
-
-    def get_permissions(self):
-        if self.action == 'list':
-            permission_classes = [permissions.AllowAny]
-        else:
-            permission_classes = [IsAdminRoleOrSuperuser]
-        return [permission() for permission in permission_classes]
