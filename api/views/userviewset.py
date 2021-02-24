@@ -1,4 +1,3 @@
-from django.shortcuts import get_object_or_404
 from rest_framework import filters, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
@@ -31,7 +30,7 @@ class UserViewSet(viewsets.ModelViewSet):
         permission_classes=[IsAuthenticated],
     )
     def me(self, request):
-        user = get_object_or_404(self.queryset, username=request.user.username)
+        user = request.user
         if request.method == 'GET':
             serializer = UserSerializer(user)
             return Response(serializer.data)
@@ -39,9 +38,6 @@ class UserViewSet(viewsets.ModelViewSet):
             serializer = UserSerializer(
                 user, data=request.data, partial=True
             )
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data)
-            return Response(
-                serializer.errors, status=status.HTTP_400_BAD_REQUEST
-            )
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data)

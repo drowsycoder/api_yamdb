@@ -1,9 +1,8 @@
 from django.contrib.auth import get_user_model
-from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from api.models import EmailAuth, RANDOM_STRING_LENGTH
+from api.models import RANDOM_STRING_LENGTH, EmailAuth
 
 User = get_user_model()
 
@@ -39,7 +38,7 @@ class EmailCodePairSerializer(TokenObtainPairSerializer):
         try:
             email_code = EmailAuth.objects.get(
                 email=email, confirmation_code=confirmation_code)
-        except ObjectDoesNotExist:
+        except EmailAuth.DoesNotExist:
             raise serializers.ValidationError(
                 'Didn\'t find such email and confirmation code combination. '
                 'Please get email notification with confirmation code and '

@@ -20,12 +20,15 @@ class EmailAuth(models.Model):
 
     email = models.EmailField(
         'адрес электронной почты', unique=True)
-    confirmation_code = models.CharField(max_length=RANDOM_STRING_LENGTH)
+    confirmation_code = models.CharField(
+        'код подтверждения', max_length=RANDOM_STRING_LENGTH)
     added = models.DateTimeField(
-        verbose_name='дата запроса', auto_now_add=True
+        'дата запроса', auto_now_add=True
     )
 
     class Meta:
+        verbose_name = 'запрос кода подтверждения'
+        verbose_name_plural = 'запросы кода подтверждения'
         indexes = [
             models.Index(
                 fields=['email', 'confirmation_code'], name='email_code_idx'),
