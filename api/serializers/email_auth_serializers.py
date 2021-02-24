@@ -1,10 +1,12 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from api.models import RANDOM_STRING_LENGTH, EmailAuth
+from api.models import EmailAuth
 
 User = get_user_model()
+RANDOM_STRING_LENGTH = settings.YAMBD_API_V1['RANDOM_STRING_LENGTH']
 
 
 class EmailAuthSerializer(serializers.ModelSerializer):
