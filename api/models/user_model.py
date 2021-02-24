@@ -40,6 +40,6 @@ class User(AbstractUser):
 
     @property
     def has_api_moderate_permission(self):
-        has_permission = self.role in [self.Role.ADMIN,
-                                       self.Role.MODERATOR] or self.is_superuser
+        has_permission = self.role in [self.Role.MODERATOR,
+                                       self.Role.ADMIN] or self.is_superuser
         return has_permission
