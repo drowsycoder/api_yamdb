@@ -1,6 +1,6 @@
 from api.models import Genre
 from api.serializers import GenreSerializer
-from api.views import CustomAPIViewSet
+from .customapiviewset import CustomAPIViewSet
 
 
 class GenreViewSet(CustomAPIViewSet):
