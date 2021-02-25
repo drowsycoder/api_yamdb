@@ -1,6 +1,6 @@
-from rest_framework import filters, mixins, permissions, viewsets
+from rest_framework import filters, mixins, viewsets
 
-from api.custom_permissions import IsAdminRoleOrSuperuser
+from api.custom_permissions import BasicAccessPermission
 
 
 class CustomAPIViewSet(mixins.ListModelMixin,
@@ -11,13 +11,7 @@ class CustomAPIViewSet(mixins.ListModelMixin,
 
     Используется для взаимодействия с жанром и категорией произведения.
     """
+    permission_classes = [BasicAccessPermission]
     filter_backends = [filters.SearchFilter]
     search_fields = ['=name', ]
     lookup_field = 'slug'
-
-    def get_permissions(self):
-        if self.action == 'list':
-            permission_classes = [permissions.AllowAny]
-        else:
-            permission_classes = [IsAdminRoleOrSuperuser]
-        return [permission() for permission in permission_classes]
